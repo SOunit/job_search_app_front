@@ -1,12 +1,13 @@
 import SkillItem from "./job-skill-item";
 
 const SkillList = (props) => {
-  console.log(props.skills);
+  console.log(props.jobDetail);
   return (
     <ul>
-      {props.skills.map((item) => {
-        return <SkillItem title={item} />;
-      })}
+      {props.jobDetail.skills &&
+        props.jobDetail.skills.map((item) => {
+          return <SkillItem title={item} />;
+        })}
     </ul>
   );
 };

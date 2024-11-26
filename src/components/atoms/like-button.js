@@ -6,7 +6,6 @@ import { userActions } from "../../store/user-slice";
 const LikeButton = (props) => {
   const dispatch = useDispatch();
   const favoriteJobs = useSelector((state) => state.user.favoriteJobs);
-
   const clickLikeHandler = () => {
     dispatch(userActions.addFavorite(props.job));
   };

@@ -23,7 +23,7 @@ const JobDetail = () => {
       }
     };
     fetchJobDetails();
-  }, []);
+  }, [params]);
 
   return <JobDetailItem jobDetail={jobDetail} />;
 };

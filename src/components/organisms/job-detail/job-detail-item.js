@@ -2,6 +2,7 @@ import LikeButton from "../../atoms/like-button";
 import Button from "../../atoms/button";
 import classes from "./job-detail-item.module.css";
 import SkillList from "./job-detail-skill";
+import { Link } from "react-router-dom";
 
 const DUMMIDATA = [
   {
@@ -157,14 +158,18 @@ const DUMMIDATA = [
 ];
 
 const JobDetailItem = ({ jobDetail }) => {
+  console.log(jobDetail);
   return (
     <div className={classes["jobDetail-item"]}>
       <section className={classes["jobDetail__header"]}>
         <h3 className={classes["jobDetail__title"]}>{jobDetail.title}</h3>
-        <p className={classes["jobDetail__location"]}>
-          {DUMMIDATA[0].location}
-        </p>
-        <p className={classes["jobDetail__role"]}>{DUMMIDATA[0].role}</p>
+        <Link to="#" className={classes["jobDetail__company"]}>
+          {jobDetail.companyName}
+        </Link>
+        <p className={classes["jobDetail__location"]}>{jobDetail.city}</p>
+        <p
+          className={classes["jobDetail__payment"]}
+        >{`${jobDetail.payment}$ an hour`}</p>
         <div className={classes["btns-wrapper"]}>
           <Button title="Apply Now" className={classes["btn__apply"]}></Button>
           <LikeButton job={jobDetail} />
@@ -173,41 +178,9 @@ const JobDetailItem = ({ jobDetail }) => {
       <section className={classes["jobDetail__main"]}>
         <h5>{jobDetail.title}</h5>
         <h5>What's the job?</h5>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
-        <p>
-          Lorem Ipsum is simply dummy text of the printing and typesetting
-          industry. Lorem Ipsum has been the industry's standard dummy text ever
-          since the 1500s, when an unknown printer took a galley of type and
-          scrambled it to make a type specimen book. It has survived not only
-          five centuries, but also the leap into electronic typesetting,
-          remaining essentially unchanged. It was popularised in the 1960s with
-          the release of Letraset sheets containing Lorem Ipsum passages, and
-          more recently with desktop publishing software like Aldus PageMaker
-          including versions of Lorem Ipsum.
-        </p>
+        <p>{jobDetail.description}</p>
         <h5>skills needed</h5>
-        <SkillList skills={DUMMIDATA[2].tools} />
+        <SkillList jobDetail={jobDetail} />
       </section>
     </div>
   );

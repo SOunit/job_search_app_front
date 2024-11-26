@@ -8,3 +8,7 @@
 .NavItem:hover {
   border-bottom: 2px solid rgb(36, 87, 166);
 }
+
+.NavItem__active {
+  border-bottom: 2px solid rgb(36, 87, 166);
+}

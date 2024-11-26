@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Outlet } from "react-router-dom";
 import JobCardList from "../components/organisms/job-list/job-card-list";
 import classes from "./job-list.module.css";
 
@@ -13,6 +14,7 @@ const JobList = () => {
         );
 
         const responseData = await response.json();
+        console.log(responseData);
         setJobList(responseData.jobs);
       } catch (err) {
         console.log(err);
@@ -25,6 +27,7 @@ const JobList = () => {
   return (
     <div className={classes[componentName]}>
       <JobCardList jobList={jobList} />
+      <Outlet />
     </div>
   );
 };

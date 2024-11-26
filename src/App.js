@@ -1,28 +1,31 @@
-import JobDetail from "./pages/job-detail";
-import CreateJob from "./pages/create-job";
-import { BrowserRouter, Route, Routes } from "react-router-dom";
-import JobList from "./pages/job-list";
-import Header from "./components/organisms/shared/header";
-import { Fragment } from "react";
-import "./App.css";
-import { CreateSkill } from "./pages/create-skill";
-import Favorite from "./pages/Favorite";
+import { useRoutes } from "react-router-dom";
+import { Fragment, lazy, Suspense } from "react";
+// import { CreateSkill } from "./pages/create-skill";
+
+const CreateSkill = lazy(() => import("./pages/create-skill"));
+const Header = lazy(() => import("./components/organisms/shared/header"));
+const CreateJob = lazy(() => import("./pages/create-job"));
+const JobList = lazy(() => import("./pages/job-list"));
+const Favorite = lazy(() => import("./pages/Favorite"));
+const JobDetail = lazy(() => import("./pages/job-detail"));
 
 function App() {
+  const routes = useRoutes([
+    {
+      path: "/",
+      element: <JobList />,
+      children: [{ path: "/jobs/detail/:jobId", element: <JobDetail /> }],
+    },
+    { path: "/jobs/new", element: <CreateJob /> },
+    { path: "/skills/new", element: <CreateSkill /> },
+    { path: "/favorite", element: <Favorite /> },
+  ]);
   return (
     <Fragment>
-      <BrowserRouter>
+      <Suspense fallback={<p>loading....</p>}>
         <Header />
-        <main>
-          <Routes>
-            <Route path="/" element={<JobList />} />
-            <Route path="/jobs/new" element={<CreateJob />} />
-            <Route path="/jobs/detail/:jobId" element={<JobDetail />} />
-            <Route path="/skills/new" element={<CreateSkill />} />
-            <Route path="/favorite" element={<Favorite />} />
-          </Routes>
-        </main>
-      </BrowserRouter>
+        {routes}
+      </Suspense>
     </Fragment>
   );
 }

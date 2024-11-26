@@ -13,6 +13,9 @@ const userSlice = createSlice({
     removeFavorite: (state, action) => {
       delete state.favoriteJobs[action.payload.id];
     },
+    updateFavorite: (state, action) => {
+      state.favoriteJobs = action.payload;
+    },
   },
 });
 

@@ -10,6 +10,7 @@ const JobForm = () => {
   const [jobDescription, setJobDescription] = useState("");
   const [companyName, setCompanyName] = useState("");
   const [payment, setPayment] = useState("");
+  const [skills, setSkills] = useState([]);
 
   const formSubmitHandler = async (event) => {
     event.preventDefault();
@@ -22,6 +23,7 @@ const JobForm = () => {
         companyName: companyName,
         payment: payment,
         description: jobDescription,
+        skills,
       }),
       headers: {
         "Content-Type": "application/json",
@@ -61,6 +63,19 @@ const JobForm = () => {
   };
   const paymentHandler = (event) => {
     setPayment(event.target.value);
+  };
+
+  // insert checked Skills into skills array
+  const inputSkillsHandler = (id, title) => {
+    const currentIndex = skills.indexOf(id);
+    const newSkills = [...skills];
+
+    if (currentIndex === -1) {
+      newSkills.push(title);
+    } else {
+      newSkills.splice(currentIndex, 1);
+    }
+    setSkills(newSkills);
   };
 
   return (
@@ -103,7 +118,11 @@ const JobForm = () => {
 
       {skillList.map((skill) => (
         <div key={skill.id}>
-          <input type={"checkbox"} value={skill.title} />
+          <input
+            type={"checkbox"}
+            value={skill.title}
+            onChange={() => inputSkillsHandler(skill.id, skill.title)}
+          />
           <label>{skill.title}</label>
         </div>
       ))}

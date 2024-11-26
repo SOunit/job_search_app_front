@@ -1,7 +1,6 @@
 import Card from "../../atoms/card";
 import classes from "./job-card.module.css";
 import { Link } from "react-router-dom";
-import Input from "../../atoms/input";
 
 const JobCard = (props) => {
   return (

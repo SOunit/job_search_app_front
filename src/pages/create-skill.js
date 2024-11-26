@@ -3,7 +3,7 @@ import CreateButton from "../components/atoms/create-button";
 import Input from "../components/atoms/input";
 import classes from "./create-skill.module.css";
 
-export const CreateSkill = () => {
+const CreateSkill = () => {
   const [skillTitle, setSkillTitle] = useState("");
 
   const formSubmitHandler = async (event) => {
@@ -40,3 +40,4 @@ export const CreateSkill = () => {
 };
 
 const componentName = "CreateSkill";
+export default CreateSkill;
